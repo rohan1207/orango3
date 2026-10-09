@@ -39,7 +39,7 @@ const MAX_FRAMES_PER_TICK = 1.35;
 /** ~1.5 viewport-heights of pin per frame-group — long runway like Drip */
 function pinScrollDistance(frameCount) {
   const vh = typeof window !== "undefined" ? window.innerHeight : 800;
-  // 300 frames → ~18 screens; keeps progress from finishing in one fling
+  // 296 frames → ~18 screens; keeps progress from finishing in one fling
   const screens = Math.max(16, Math.round(frameCount * 0.06));
   return Math.round(vh * screens);
 }

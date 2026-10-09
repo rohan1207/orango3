@@ -19,32 +19,34 @@ const steps = [
   },
 ];
 
-/** White glyphs on solid orange circles (per mockup) */
+/** White payment glyph on solid orange circle */
 function TapIcon() {
   return (
-    <svg viewBox="0 0 48 48" className="h-[1.35rem] w-[1.35rem]" fill="none" aria-hidden>
-      <circle cx="24" cy="17" r="6.5" stroke="#fff" strokeWidth="2.4" />
-      <path d="M24 24.5v5.5" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" />
+    <svg viewBox="0 0 48 48" className="h-[1.7rem] w-[1.7rem] sm:h-[1.85rem] sm:w-[1.85rem]" fill="none" aria-hidden>
+      <rect
+        x="8"
+        y="14"
+        width="32"
+        height="22"
+        rx="3.5"
+        stroke="#fff"
+        strokeWidth="2.4"
+      />
+      <path d="M8 21h32" stroke="#fff" strokeWidth="2.4" />
       <path
-        d="M17.5 36c2.4-4.2 5.2-6.2 6.5-6.2s4.1 2 6.5 6.2"
+        d="M14 29h8"
         stroke="#fff"
         strokeWidth="2.4"
         strokeLinecap="round"
-        strokeLinejoin="round"
       />
-      <path
-        d="M20 13.5c1.1-2 2.8-3.2 4-3.2"
-        stroke="#fff"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-      />
+      <circle cx="32" cy="29" r="2.2" fill="#fff" />
     </svg>
   );
 }
 
 function OrangeIcon() {
   return (
-    <svg viewBox="0 0 48 48" className="h-[1.4rem] w-[1.4rem]" fill="none" aria-hidden>
+    <svg viewBox="0 0 48 48" className="h-[1.75rem] w-[1.75rem] sm:h-[1.9rem] sm:w-[1.9rem]" fill="none" aria-hidden>
       <circle cx="24" cy="25" r="11" fill="#fff" />
       <path
         d="M24 25V15.5M24 25l6.5 6.5M24 25l-6.5 6.5M24 25h9"
@@ -65,7 +67,7 @@ function OrangeIcon() {
 
 function JuiceIcon() {
   return (
-    <svg viewBox="0 0 48 48" className="h-[1.4rem] w-[1.4rem]" fill="none" aria-hidden>
+    <svg viewBox="0 0 48 48" className="h-[1.75rem] w-[1.75rem] sm:h-[1.9rem] sm:w-[1.9rem]" fill="none" aria-hidden>
       <path
         d="M17 13h14l-1.35 20.5a5 5 0 0 1-5 4.15h-1.3a5 5 0 0 1-5-4.15L17 13Z"
         fill="#fff"
@@ -109,7 +111,7 @@ export default function ProcessSteps() {
         rotate={-14}
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1100px] px-5 md:px-8">
+      <div className="relative z-10 mx-auto w-full max-w-[1280px] px-5 md:px-8">
         <header className="mx-auto max-w-3xl text-center">
           <h2
             id="process-heading"
@@ -123,64 +125,60 @@ export default function ProcessSteps() {
           </p>
         </header>
 
-        {/* Main panel */}
+        {/* Machine + cards — no panel/box behind the machine image */}
         <motion.div
           initial={reduce ? false : { opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mt-7 overflow-hidden rounded-[28px] border border-[#E8E4DE] bg-[#F3F1ED] px-5 py-6 shadow-[0_1px_0_rgba(255,255,255,0.8)_inset] sm:rounded-[32px] sm:px-7 sm:py-7 md:mt-8 md:px-9 md:py-8 lg:px-10 lg:py-9"
+          className="relative mt-8 grid items-center gap-8 md:mt-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.95fr)] lg:gap-5 xl:gap-7"
         >
-          <div className="grid items-center gap-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-8 xl:gap-10">
-            {/* Machine */}
-            <div className="relative mx-auto w-full max-w-[280px] sm:max-w-[320px] lg:mx-0 lg:max-w-[380px]">
-              <Image
-                src="/machine-process.png"
-                alt="OranGo vending machine"
-                width={900}
-                height={1200}
-                className="h-auto w-full object-contain"
-                sizes="(max-width: 1024px) 70vw, 38vw"
-                priority
-              />
-            </div>
-
-            {/* Step cards — no connector lines */}
-            <ol className="flex flex-col justify-center gap-3.5 sm:gap-4">
-              {steps.map((step, index) => {
-                const Icon = icons[step.id];
-                return (
-                  <motion.li
-                    key={step.id}
-                    initial={reduce ? false : { opacity: 0, x: 14 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, amount: 0.4 }}
-                    transition={{
-                      duration: 0.4,
-                      delay: reduce ? 0 : 0.06 * index,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
-                    className="flex items-center gap-3 sm:gap-3.5"
-                  >
-                    <span
-                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full sm:h-12 sm:w-12"
-                      style={{ backgroundColor: ORANGE }}
-                    >
-                      <Icon />
-                    </span>
-                    <div className="min-w-0 flex-1 rounded-[1.75rem] border border-[#EE6F28]/50 bg-white px-5 py-3.5 sm:rounded-[2rem] sm:px-6 sm:py-4">
-                      <p
-                        className="text-[14px] font-semibold leading-snug tracking-[-0.015em] sm:text-[15px] md:text-[16px]"
-                        style={{ color: GREEN }}
-                      >
-                        {step.title}
-                      </p>
-                    </div>
-                  </motion.li>
-                );
-              })}
-            </ol>
+          <div className="relative mx-auto w-full max-w-[380px] bg-transparent sm:max-w-[440px] lg:mx-0 lg:max-w-[560px] lg:scale-[1.1] lg:origin-center">
+            <Image
+              src="/machine.png"
+              alt="OranGo vending machine"
+              width={900}
+              height={1200}
+              className="h-auto w-full bg-transparent object-contain"
+              sizes="(max-width: 1024px) 85vw, 50vw"
+              priority
+            />
           </div>
+
+          <ol className="flex flex-col justify-center gap-5 pt-4 sm:gap-5 sm:pt-5 lg:gap-6 lg:translate-y-3 xl:gap-7 xl:translate-y-4">
+            {steps.map((step, index) => {
+              const Icon = icons[step.id];
+              return (
+                <motion.li
+                  key={step.id}
+                  initial={reduce ? false : { opacity: 0, x: 14 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{
+                    duration: 0.4,
+                    delay: reduce ? 0 : 0.06 * index,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="flex items-center gap-4 md:gap-5"
+                >
+                  <span
+                    className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full md:h-[4.25rem] md:w-[4.25rem]"
+                    style={{ backgroundColor: ORANGE }}
+                  >
+                    <Icon />
+                  </span>
+                  <div className="min-w-0 flex-1 rounded-[2rem] border border-[#EE6F28]/50 bg-white px-6 py-[1.15rem] sm:rounded-[2.25rem] sm:px-8 sm:py-5 md:px-9 md:py-[1.5rem]">
+                    <p
+                      className="text-[16px] font-semibold leading-snug tracking-[-0.015em] sm:text-[17px] md:text-[19px] lg:text-[20px]"
+                      style={{ color: GREEN }}
+                    >
+                      {step.title}
+                    </p>
+                  </div>
+                </motion.li>
+              );
+            })}
+          </ol>
         </motion.div>
       </div>
     </section>

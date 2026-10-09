@@ -13,26 +13,46 @@ import {
 
 const HOME_FRAME_SET = "home4";
 const ABSOLUTE_FAILSAFE_MS = 120000;
+/** Video drives this share of the bar; frames drive the rest after video ends */
+const VIDEO_BAR_SHARE = 0.55;
 
 /**
- * Landing video + full frame preload.
- * Leaves only when BOTH the video finished AND all 300 frames are loaded.
+ * Landing video + full frame preload (296).
+ * Bar never jumps backward: video fills first segment, then frames finish to 100%.
  */
 export default function LandingIntro({ onComplete }) {
   const videoRef = useRef(null);
   const doneRef = useRef(false);
   const framesReadyRef = useRef(false);
   const videoEndedRef = useRef(false);
+  const frameRatioRef = useRef(0);
   const sessionUnsubRef = useRef(null);
 
   const [sliderPct, setSliderPct] = useState(0);
   const [videoEnded, setVideoEnded] = useState(false);
   const [framesReady, setFramesReady] = useState(false);
 
+  const computePct = (videoRatio, frameRatio, videoDone) => {
+    const v = Math.min(1, Math.max(0, videoRatio));
+    const f = Math.min(1, Math.max(0, frameRatio));
+    if (!videoDone) {
+      // Video phase only — never claim 100% until frames are ready
+      return Math.min(VIDEO_BAR_SHARE * 100 - 0.01, v * VIDEO_BAR_SHARE * 100);
+    }
+    // After video: continue from video share → 100% with frame load
+    return VIDEO_BAR_SHARE * 100 + f * (1 - VIDEO_BAR_SHARE) * 100;
+  };
+
+  const applyPct = (videoRatio, frameRatio, videoDone) => {
+    const next = computePct(videoRatio, frameRatio, videoDone);
+    setSliderPct((prev) => Math.max(prev, next)); // never go backward
+  };
+
   const tryFinish = () => {
     if (doneRef.current) return;
     if (!videoEndedRef.current || !framesReadyRef.current) return;
     doneRef.current = true;
+    setSliderPct(100);
     onComplete?.();
   };
 
@@ -40,8 +60,8 @@ export default function LandingIntro({ onComplete }) {
     if (videoEndedRef.current) return;
     const video = videoRef.current;
     if (!video || !video.duration || Number.isNaN(video.duration)) return;
-    const pct = (video.currentTime / video.duration) * 100;
-    setSliderPct(Math.min(100, Math.max(0, pct)));
+    const v = video.currentTime / video.duration;
+    applyPct(v, frameRatioRef.current, false);
   };
 
   useEffect(() => {
@@ -61,18 +81,26 @@ export default function LandingIntro({ onComplete }) {
       const session = warmupFramesFromLanding(HOME_FRAME_SET);
 
       const markFramesReady = () => {
+        if (framesReadyRef.current) return;
         framesReadyRef.current = true;
+        frameRatioRef.current = 1;
         setFramesReady(true);
-        if (videoEndedRef.current) {
-          setSliderPct(100);
-          tryFinish();
-        }
+        applyPct(1, 1, videoEndedRef.current);
+        tryFinish();
       };
 
       if (session?.subscribe) {
         sessionUnsubRef.current = session.subscribe(({ loaded, total: t }) => {
-          if (t > 0 && videoEndedRef.current) {
-            setSliderPct(Math.round((loaded / t) * 100));
+          if (t > 0) {
+            const ratio = loaded / t;
+            frameRatioRef.current = ratio;
+            applyPct(
+              videoEndedRef.current ? 1 : 0,
+              ratio,
+              videoEndedRef.current,
+            );
+            // If video still playing, keep merging with live video time
+            if (!videoEndedRef.current) syncVideoProgress();
           }
           if (t > 0 && loaded >= t && session.frames?.[0]) {
             markFramesReady();
@@ -94,6 +122,7 @@ export default function LandingIntro({ onComplete }) {
       failSafe = window.setTimeout(() => {
         framesReadyRef.current = true;
         videoEndedRef.current = true;
+        frameRatioRef.current = 1;
         setFramesReady(true);
         setVideoEnded(true);
         setSliderPct(100);
@@ -127,9 +156,10 @@ export default function LandingIntro({ onComplete }) {
   }, []);
 
   const onVideoDone = () => {
+    if (videoEndedRef.current) return;
     videoEndedRef.current = true;
     setVideoEnded(true);
-    if (framesReadyRef.current) setSliderPct(100);
+    applyPct(1, frameRatioRef.current, true);
     tryFinish();
   };
 
@@ -165,11 +195,11 @@ export default function LandingIntro({ onComplete }) {
       <div className="w-full max-w-[min(420px,88vw)]">
         <div className="relative h-1.5 rounded-full bg-[#EE6F28]/15">
           <div
-            className="absolute inset-y-0 left-0 rounded-full bg-[#EE6F28] transition-[width] duration-150 ease-linear"
+            className="absolute inset-y-0 left-0 rounded-full bg-[#EE6F28] transition-[width] duration-200 ease-out"
             style={{ width: `${sliderPct}%` }}
           />
           <div
-            className="pointer-events-none absolute top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transition-[left] duration-150 ease-linear"
+            className="pointer-events-none absolute top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transition-[left] duration-200 ease-out"
             style={{ left: `${sliderPct}%` }}
           >
             <Image
