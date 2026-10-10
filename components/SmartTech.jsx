@@ -40,6 +40,29 @@ const features = [
   },
 ];
 
+const bentoTiles = [
+  {
+    src: "/bento/family-machine.jpg",
+    alt: "Family enjoying fresh OranGo juice at the machine",
+    className: "col-span-2 row-span-2",
+  },
+  {
+    src: "/bento/cheers-cups.jpg",
+    alt: "Friends toasting with OranGo cups",
+    className: "col-span-2 row-span-1",
+  },
+  {
+    src: "/bento/friends-park.jpg",
+    alt: "Friends sharing OranGo juice in the park",
+    className: "col-span-1 row-span-1",
+  },
+  {
+    src: "/bento/office-cup.jpg",
+    alt: "On-the-go OranGo with laptop in hand",
+    className: "col-span-1 row-span-1",
+  },
+];
+
 function ThermometerIcon() {
   return (
     <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden>
@@ -196,22 +219,33 @@ export default function SmartTech() {
 
       <div className="relative z-10 mx-auto flex h-full w-full max-w-[1440px] flex-col px-5 py-0 lg:px-8 lg:py-6 xl:py-8">
         <div className="grid h-full min-h-0 flex-1 items-stretch gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-10 xl:gap-14">
-          {/* Left image */}
-          <div className="relative order-2 flex h-[min(58vw,360px)] min-h-[260px] items-center justify-center sm:h-[380px] lg:order-1 lg:h-full lg:min-h-0">
-            <div className="pointer-events-none absolute inset-[12%] rounded-[2rem] bg-[#EE6F28]/8" />
+          {/* Left — lifestyle bento */}
+          <div className="relative order-2 flex h-[min(72vw,420px)] min-h-[280px] items-stretch sm:h-[460px] lg:order-1 lg:h-full lg:min-h-0">
             <motion.div
-              animate={reduce ? undefined : { y: [0, 8, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="relative z-[1] flex h-full w-full items-center justify-center p-1 sm:p-2"
+              initial={reduce ? false : { opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              className="grid h-full w-full grid-cols-4 grid-rows-2 gap-2 sm:gap-2.5 lg:gap-3"
             >
-              <Image
-                src="/internal.png"
-                alt="Inside the OranGo machine"
-                width={900}
-                height={1100}
-                sizes="(max-width: 1024px) 70vw, 42vw"
-                className="h-full w-auto max-w-full rounded-3xl object-contain drop-shadow-[0_24px_48px_rgba(238,111,40,0.18)]"
-              />
+              {bentoTiles.map((tile, i) => (
+                <motion.div
+                  key={tile.src}
+                  initial={reduce ? false : { opacity: 0, scale: 0.97 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.06 + i * 0.05, duration: 0.45 }}
+                  className={`relative overflow-hidden rounded-2xl bg-[#FFF3E0] sm:rounded-[1.35rem] ${tile.className}`}
+                >
+                  <Image
+                    src={tile.src}
+                    alt={tile.alt}
+                    fill
+                    sizes="(max-width: 1024px) 45vw, 22vw"
+                    className="object-cover"
+                  />
+                </motion.div>
+              ))}
             </motion.div>
           </div>
 
