@@ -11,77 +11,109 @@ const features = [
   {
     title: "Oranges stored at 4°C",
     copy: "Fresh oranges and naturally chilled juice",
-    icon: ThermometerIcon,
+    hint: "4°C",
+    icon: ColdStorageIcon,
   },
   {
     title: "UPI enabled payments",
     copy: "Seamless experience",
-    icon: QrPayIcon,
+    hint: "UPI",
+    icon: PhonePayIcon,
   },
   {
     title: "Scheduled self-cleaning",
     copy: "Regular cleaning intervals.",
-    icon: CleanIcon,
+    hint: "Auto",
+    icon: BubblesCleanIcon,
   },
   {
     title: "Ozone sterilization",
     copy: "Enhanced hygiene.",
-    icon: ShieldIcon,
+    hint: "O₃",
+    icon: OzoneSparkIcon,
   },
   {
     title: "Sealed for maximum benefits",
     copy: "Preserves nutrients and freshness",
-    icon: LockIcon,
+    hint: "Seal",
+    icon: SealedCupIcon,
   },
   {
     title: "Daily tracking",
     copy: "For regular replenishment.",
-    icon: ChartIcon,
+    hint: "Live",
+    icon: RestockIcon,
   },
 ];
 
 const bentoTiles = [
   {
-    src: "/bento/family-machine.jpg",
+    src: "/bento/machine-hero-v3.jpg",
     alt: "OranGo fresh orange juice vending machine",
     className: "col-span-2 row-span-2",
   },
   {
-    src: "/bento/cheers-cups.jpg",
+    src: "/bento/oranges-inside.jpg",
     alt: "Fresh oranges stored inside the OranGo machine",
     className: "col-span-2 row-span-1",
   },
   {
-    src: "/bento/friends-park.jpg",
+    src: "/bento/pure-juice-promo.jpg",
     alt: "100% pure OranGo orange juice — no dilution, no additives",
     className: "col-span-1 row-span-1",
   },
   {
-    src: "/bento/office-cup.jpg",
-    alt: "OranGo sealed cup of fresh orange juice",
+    src: "/bento/cup-product-v2.jpg",
+    alt: "OranGo cup of fresh orange juice with a whole orange",
     className: "col-span-1 row-span-1",
   },
 ];
 
-function ThermometerIcon() {
+function ColdStorageIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden>
+    <svg viewBox="0 0 32 32" className="h-7 w-7" fill="none" aria-hidden>
       <path
-        d="M10 14.5V5.5a2 2 0 1 1 4 0v9a3.5 3.5 0 1 1-4 0Z"
+        d="M16 4v24M16 10l4.5-2.6M16 10l-4.5-2.6M16 22l4.5 2.6M16 22l-4.5 2.6M8.5 8.5 23.5 23.5M23.5 8.5 8.5 23.5M10 16h12"
         stroke={ORANGE}
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M12 5.5v8.2"
-        stroke={ORANGE}
-        strokeWidth="1.8"
+        strokeWidth="1.9"
         strokeLinecap="round"
       />
-      <circle cx="12" cy="16.5" r="1.6" fill={ORANGE} />
+      <circle cx="16" cy="16" r="2.2" fill={ORANGE} />
+    </svg>
+  );
+}
+
+function PhonePayIcon() {
+  return (
+    <svg viewBox="0 0 32 32" className="h-7 w-7" fill="none" aria-hidden>
+      <rect
+        x="9"
+        y="3.5"
+        width="14"
+        height="25"
+        rx="3"
+        stroke={ORANGE}
+        strokeWidth="1.9"
+      />
+      <path d="M13 6.5h6" stroke={ORANGE} strokeWidth="1.7" strokeLinecap="round" />
+      <circle cx="16" cy="25.5" r="1.2" fill={ORANGE} />
       <path
-        d="M15.8 4.2h2.4M15.8 7h2.4M15.8 9.8h1.6"
+        d="M12.5 13.5h3.2v3.2h-3.2v-3.2Zm4.3 0H20v2H16.8v-2Zm0 3.5H19v3h-2.2v-3Zm-4.3 1.2h2v2.8h-2v-2.8Z"
+        fill={ORANGE}
+      />
+    </svg>
+  );
+}
+
+function BubblesCleanIcon() {
+  return (
+    <svg viewBox="0 0 32 32" className="h-7 w-7" fill="none" aria-hidden>
+      <circle cx="12" cy="18" r="5.2" stroke={ORANGE} strokeWidth="1.9" />
+      <circle cx="21" cy="13" r="3.6" stroke={ORANGE} strokeWidth="1.8" />
+      <circle cx="22.5" cy="22.5" r="2.4" stroke={ORANGE} strokeWidth="1.7" />
+      <circle cx="11" cy="10" r="1.6" fill={ORANGE} />
+      <path
+        d="M7.5 24.5c1.8 1.6 4.2 2.4 6.5 1.6"
         stroke={ORANGE}
         strokeWidth="1.6"
         strokeLinecap="round"
@@ -90,104 +122,65 @@ function ThermometerIcon() {
   );
 }
 
-function QrPayIcon() {
+function OzoneSparkIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden>
-      <rect x="3.5" y="3.5" width="7" height="7" rx="1.2" stroke={ORANGE} strokeWidth="1.7" />
-      <rect x="13.5" y="3.5" width="7" height="7" rx="1.2" stroke={ORANGE} strokeWidth="1.7" />
-      <rect x="3.5" y="13.5" width="7" height="7" rx="1.2" stroke={ORANGE} strokeWidth="1.7" />
+    <svg viewBox="0 0 32 32" className="h-7 w-7" fill="none" aria-hidden>
       <path
-        d="M14 14h2.5v2.5H14V14Zm4 0H20v2h-2v-2Zm-4 4h2v2.5h-2V18Zm4 1.5H20V22h-2.5v-2.5H16V18h2v1.5Z"
-        fill={ORANGE}
+        d="M16 3.5 17.8 12l8.2 1.1-6.3 5.4 1.8 8.5L16 22.6l-5.5 4.4 1.8-8.5-6.3-5.4L14.2 12 16 3.5Z"
+        stroke={ORANGE}
+        strokeWidth="1.8"
+        strokeLinejoin="round"
       />
-      <rect x="5.5" y="5.5" width="3" height="3" rx="0.4" fill={ORANGE} />
-      <rect x="15.5" y="5.5" width="3" height="3" rx="0.4" fill={ORANGE} />
-      <rect x="5.5" y="15.5" width="3" height="3" rx="0.4" fill={ORANGE} />
+      <circle cx="16" cy="15.2" r="2.4" fill={ORANGE} />
     </svg>
   );
 }
 
-function CleanIcon() {
+function SealedCupIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden>
+    <svg viewBox="0 0 32 32" className="h-7 w-7" fill="none" aria-hidden>
       <path
-        d="M8 4h8l-1 4H9L8 4Z"
+        d="M10 10h12l-1.2 14.2a3 3 0 0 1-3 2.8h-3.6a3 3 0 0 1-3-2.8L10 10Z"
+        stroke={ORANGE}
+        strokeWidth="1.9"
+        strokeLinejoin="round"
+      />
+      <path d="M9 10h14" stroke={ORANGE} strokeWidth="1.9" strokeLinecap="round" />
+      <path d="M12 7.5h8" stroke={ORANGE} strokeWidth="1.8" strokeLinecap="round" />
+      <path
+        d="M15.2 15.5c.8 1.6 2.8 1.6 3.6 0"
+        stroke={ORANGE}
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function RestockIcon() {
+  return (
+    <svg viewBox="0 0 32 32" className="h-7 w-7" fill="none" aria-hidden>
+      <path
+        d="M6 14h14l2.5 4.5H26v5.5a2 2 0 0 1-2 2h-1"
+        stroke={ORANGE}
+        strokeWidth="1.9"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="11.5" cy="25.5" r="2.2" stroke={ORANGE} strokeWidth="1.8" />
+      <circle cx="21.5" cy="25.5" r="2.2" stroke={ORANGE} strokeWidth="1.8" />
+      <path
+        d="M6 14V8.5a1.5 1.5 0 0 1 1.5-1.5H16"
+        stroke={ORANGE}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <path
+        d="M13 5.5h6.5M16.25 3v5"
         stroke={ORANGE}
         strokeWidth="1.7"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M9 8h6v2.5c0 1.2-.6 2.3-1.6 3L12 15l-1.4-1.5c-1-.7-1.6-1.8-1.6-3V8Z"
-        stroke={ORANGE}
-        strokeWidth="1.7"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M10 15.5 9 21M14 15.5l1 5.5M12 15.5V21"
-        stroke={ORANGE}
-        strokeWidth="1.7"
         strokeLinecap="round"
       />
-    </svg>
-  );
-}
-
-function ShieldIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden>
-      <path
-        d="M12 3.5 19 6.5v5.2c0 4.3-2.9 7.4-7 8.8-4.1-1.4-7-4.5-7-8.8V6.5L12 3.5Z"
-        stroke={ORANGE}
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M9.5 12.2 11.2 14l3.5-4"
-        stroke={ORANGE}
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function LockIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden>
-      <rect
-        x="6"
-        y="10.5"
-        width="12"
-        height="9.5"
-        rx="2"
-        stroke={ORANGE}
-        strokeWidth="1.8"
-      />
-      <path
-        d="M9 10.5V8a3 3 0 0 1 6 0v2.5"
-        stroke={ORANGE}
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-      <circle cx="12" cy="15" r="1.3" fill={ORANGE} />
-    </svg>
-  );
-}
-
-function ChartIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden>
-      <path
-        d="M4 17.5 9 12l3.5 3.5L20 7"
-        stroke={ORANGE}
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <circle cx="9" cy="12" r="1.6" fill={ORANGE} />
-      <circle cx="12.5" cy="15.5" r="1.6" fill={ORANGE} />
-      <circle cx="20" cy="7" r="1.6" fill={ORANGE} />
     </svg>
   );
 }
@@ -258,7 +251,7 @@ export default function SmartTech() {
               id="tech-heading"
               className="mt-2 text-[clamp(1.6rem,4vw,2.75rem)] font-semibold leading-[1.05] tracking-[-0.035em] text-[#8B3410] lg:mt-2.5"
             >
-              Built clean. Built for busy floors.
+              Fresh juice, every pour.
             </h2>
             <p className="mt-3 max-w-xl text-[14px] leading-relaxed text-[#8B3410]/65 sm:text-[15px] lg:mt-3.5">
               Cold storage, UPI, ozone cleaning and sealed cups — so guests trust
@@ -275,20 +268,32 @@ export default function SmartTech() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.04 }}
-                    className="rounded-2xl bg-white p-4 shadow-[0_1px_0_rgba(139,52,16,0.04)] sm:p-[1.1rem] lg:p-4 xl:p-[1.15rem]"
+                    whileHover={reduce ? undefined : { y: -3 }}
+                    className="group relative overflow-hidden rounded-2xl border border-[#EE6F28]/18 bg-gradient-to-br from-white via-white to-[#FFF6EE] p-3.5 shadow-[0_8px_24px_rgba(139,52,16,0.06)] transition-[border-color,box-shadow] duration-300 hover:border-[#EE6F28]/45 hover:shadow-[0_14px_32px_rgba(238,111,40,0.14)] sm:p-4"
                   >
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#FFF3E0]">
-                      <Icon />
-                    </span>
-                    <h3
-                      className="mt-3 text-[0.95rem] font-semibold leading-snug tracking-[-0.02em] sm:text-[1rem]"
-                      style={{ color: GREEN }}
-                    >
-                      {item.title}
-                    </h3>
-                    <p className="mt-1 text-[12.5px] leading-relaxed text-[#5C6370] sm:text-[13px]">
-                      {item.copy}
-                    </p>
+                    <span
+                      aria-hidden
+                      className="absolute inset-y-3 left-0 w-[3px] rounded-full bg-[#EE6F28]/0 transition-all duration-300 group-hover:bg-[#EE6F28]"
+                    />
+                    <div className="flex items-start gap-3">
+                      <span className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#FFF3E0] ring-1 ring-[#EE6F28]/20 transition-transform duration-300 group-hover:scale-105 group-hover:ring-[#EE6F28]/40">
+                        <Icon />
+                        <span className="absolute -right-1.5 -top-1.5 rounded-full bg-[#EE6F28] px-1.5 py-[1px] text-[9px] font-bold uppercase tracking-wide text-white shadow-sm">
+                          {item.hint}
+                        </span>
+                      </span>
+                      <div className="min-w-0 pt-0.5">
+                        <h3
+                          className="text-[0.95rem] font-semibold leading-snug tracking-[-0.02em] sm:text-[1rem]"
+                          style={{ color: GREEN }}
+                        >
+                          {item.title}
+                        </h3>
+                        <p className="mt-1 text-[12.5px] leading-relaxed text-[#5C6370] sm:text-[13px]">
+                          {item.copy}
+                        </p>
+                      </div>
+                    </div>
                   </motion.article>
                 );
               })}

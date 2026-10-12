@@ -8,9 +8,10 @@ const GREEN = "#1B5E3B";
 const LABEL_ORANGE = "#C45A12";
 
 /** Square stage size (px) — keeps dashed ring + icons on a true circle */
-const RING_SIZE = 560;
-/** Dashed SVG is 86% of stage; circle r=46 in 100 viewBox → radius in px */
-const RING_RADIUS = Math.round(RING_SIZE * 0.86 * 0.46);
+const RING_SIZE = 600;
+/** Dashed SVG share of stage; circle r=46 in 100 viewBox → radius in px */
+const RING_SCALE = 0.93;
+const RING_RADIUS = Math.round(RING_SIZE * RING_SCALE * 0.46);
 
 /**
  * 6 planets equally spaced every 60° on the ring (0° = right, -90° = top).
@@ -225,13 +226,32 @@ function BenefitNode({ item, active, onEnter, onLeave, radius }) {
           <motion.div
             id={`benefit-tip-${item.id}`}
             role="tooltip"
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.98 }}
-            transition={{ duration: 0.18 }}
-            className={`absolute z-30 w-[min(230px,72vw)] rounded-xl bg-white px-3.5 py-3 text-[12px] leading-snug text-[#3F3F46] shadow-[0_14px_36px_rgba(0,0,0,0.16)] sm:w-[245px] sm:text-[13px] ${tipClass}`}
+            initial={{ opacity: 0, scale: 0.94, y: 4 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.97, y: 2 }}
+            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className={`absolute z-30 w-[min(248px,74vw)] overflow-hidden rounded-2xl border border-[#EE6F28]/25 bg-gradient-to-br from-white via-white to-[#FFF6EE] shadow-[0_18px_44px_rgba(80,30,0,0.22)] sm:w-[268px] ${tipClass}`}
           >
-            {item.detail}
+            <div className="flex items-center gap-2.5 border-b border-[#EE6F28]/12 bg-[#FFF3E0]/55 px-3.5 py-2.5">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-[#EE6F28] bg-white">
+                <span className="scale-[0.72]">
+                  <Icon />
+                </span>
+              </span>
+              <p
+                className="text-[13px] font-semibold tracking-[-0.02em]"
+                style={{ color: GREEN }}
+              >
+                {item.label}
+              </p>
+            </div>
+            <p className="px-3.5 py-3 text-[12.5px] leading-relaxed text-[#3F3F46] sm:text-[13px]">
+              {item.detail}
+            </p>
+            <span
+              aria-hidden
+              className="absolute bottom-0 left-0 h-[3px] w-full bg-gradient-to-r from-[#EE6F28] via-[#F4A261] to-transparent"
+            />
           </motion.div>
         ) : null}
       </AnimatePresence>
@@ -296,8 +316,8 @@ export default function HealthBenefits() {
           <svg
             aria-hidden
             className="pointer-events-none absolute left-1/2 top-1/2 z-[1] -translate-x-1/2 -translate-y-1/2"
-            width={Math.round(RING_SIZE * 0.86)}
-            height={Math.round(RING_SIZE * 0.86)}
+            width={Math.round(RING_SIZE * RING_SCALE)}
+            height={Math.round(RING_SIZE * RING_SCALE)}
             viewBox="0 0 100 100"
           >
             <circle
@@ -311,17 +331,18 @@ export default function HealthBenefits() {
             />
           </svg>
 
-          {/* Pour / cup — dead center of the circle */}
-          <div className="pointer-events-none absolute left-1/2 top-1/2 z-[2] flex w-[40%] max-w-[240px] -translate-x-1/2 -translate-y-1/2 items-center justify-center">
-            <Image
-              src="/benefits/orango-pour.png"
-              alt="Fresh orange juice pouring into an OranGo cup"
-              width={600}
-              height={900}
-              className="h-auto w-full object-contain drop-shadow-[0_20px_40px_rgba(120,40,0,0.25)] [mix-blend-mode:screen]"
-              sizes="240px"
-              priority
-            />
+          {/* Pour / cup — exact geometric center of the ring */}
+          <div className="pointer-events-none absolute inset-0 z-[2] flex items-center justify-center">
+            <div className="relative aspect-square w-[46%] max-w-[300px]">
+              <Image
+                src="/benefits/orango-pour.png"
+                alt="Fresh orange juice pouring into an OranGo cup"
+                fill
+                className="object-contain drop-shadow-[0_20px_40px_rgba(120,40,0,0.25)] [mix-blend-mode:screen]"
+                sizes="300px"
+                priority
+              />
+            </div>
           </div>
 
           {benefits.map((item) => (
@@ -338,14 +359,14 @@ export default function HealthBenefits() {
 
         {/* Mobile */}
         <div className="mt-5 md:hidden">
-          <div className="relative mx-auto w-[62%] max-w-[240px]">
+          <div className="relative mx-auto w-[72%] max-w-[300px]">
             <Image
               src="/benefits/orango-pour.png"
               alt="Fresh orange juice pouring into an OranGo cup"
               width={600}
               height={900}
               className="h-auto w-full object-contain [mix-blend-mode:screen]"
-              sizes="240px"
+              sizes="300px"
             />
           </div>
 
@@ -364,9 +385,13 @@ export default function HealthBenefits() {
                   <button
                     type="button"
                     onClick={() => setActiveId(open ? null : item.id)}
-                    className="flex w-full flex-col items-center rounded-2xl bg-white/95 px-2.5 py-3 text-center shadow-sm"
+                    className={`flex w-full flex-col items-center overflow-hidden rounded-2xl border px-2.5 py-3 text-center shadow-[0_8px_22px_rgba(80,30,0,0.12)] transition-colors ${
+                      open
+                        ? "border-[#EE6F28]/45 bg-gradient-to-b from-white to-[#FFF6EE]"
+                        : "border-white/70 bg-white/95"
+                    }`}
                   >
-                    <span className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[#EE6F28] bg-white">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[#EE6F28] bg-white shadow-sm">
                       <Icon />
                     </span>
                     <span
@@ -381,7 +406,7 @@ export default function HealthBenefits() {
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
-                          className="mt-2 overflow-hidden text-[11px] leading-snug text-[#52525B]"
+                          className="mt-2 overflow-hidden border-t border-[#EE6F28]/15 pt-2 text-left text-[11px] leading-snug text-[#52525B]"
                         >
                           {item.detail}
                         </motion.p>

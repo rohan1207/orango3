@@ -3,9 +3,9 @@
 import ProcessSteps from "@/components/ProcessSteps";
 import HealthBenefits from "@/components/HealthBenefits";
 import SmartTech from "@/components/SmartTech";
-import TrustStrip from "@/components/TrustStrip";
+// import TrustStrip from "@/components/TrustStrip";
 import CtaSection from "@/components/CtaSection";
-import HomeFaq from "@/components/HomeFaq";
+// import HomeFaq from "@/components/HomeFaq";
 import ContactTeaser from "@/components/ContactTeaser";
 
 /** Shared sections below each home-variant hero */
@@ -18,9 +18,9 @@ export default function HomePageRest() {
       {/* <ExperienceSection /> */}
       <HealthBenefits />
       <SmartTech />
-      <TrustStrip />
+      {/* <TrustStrip /> */}
       <CtaSection />
-      <HomeFaq />
+      {/* <HomeFaq /> */}
       <ContactTeaser />
     </>
   );
