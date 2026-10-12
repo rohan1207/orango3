@@ -1,5 +1,5 @@
-import BrandRibbon from "@/components/BrandRibbon";
-import ExperienceSection from "@/components/ExperienceSection";
+// import BrandRibbon from "@/components/BrandRibbon";
+// import ExperienceSection from "@/components/ExperienceSection";
 import ProcessSteps from "@/components/ProcessSteps";
 import HealthBenefits from "@/components/HealthBenefits";
 import SmartTech from "@/components/SmartTech";
@@ -14,8 +14,8 @@ export default function HomePageRest() {
     <>
       {/* Client Section 1 — immediately after hero */}
       <ProcessSteps />
-      <BrandRibbon />
-      <ExperienceSection />
+      {/* <BrandRibbon /> */}
+      {/* <ExperienceSection /> */}
       <HealthBenefits />
       <SmartTech />
       <TrustStrip />

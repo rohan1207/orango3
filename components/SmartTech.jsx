@@ -43,22 +43,22 @@ const features = [
 const bentoTiles = [
   {
     src: "/bento/family-machine.jpg",
-    alt: "Family enjoying fresh OranGo juice at the machine",
+    alt: "OranGo fresh orange juice vending machine",
     className: "col-span-2 row-span-2",
   },
   {
     src: "/bento/cheers-cups.jpg",
-    alt: "Friends toasting with OranGo cups",
+    alt: "Fresh oranges stored inside the OranGo machine",
     className: "col-span-2 row-span-1",
   },
   {
     src: "/bento/friends-park.jpg",
-    alt: "Friends sharing OranGo juice in the park",
+    alt: "100% pure OranGo orange juice — no dilution, no additives",
     className: "col-span-1 row-span-1",
   },
   {
     src: "/bento/office-cup.jpg",
-    alt: "On-the-go OranGo with laptop in hand",
+    alt: "OranGo sealed cup of fresh orange juice",
     className: "col-span-1 row-span-1",
   },
 ];
@@ -218,7 +218,7 @@ export default function SmartTech() {
       />
 
       <div className="relative z-10 mx-auto flex h-full w-full max-w-[1440px] flex-col px-5 py-0 lg:px-8 lg:py-6 xl:py-8">
-        <div className="grid h-full min-h-0 flex-1 items-stretch gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-10 xl:gap-14">
+        <div className="grid h-full min-h-0 flex-1 items-stretch gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 xl:gap-12">
           {/* Left — lifestyle bento */}
           <div className="relative order-2 flex h-[min(72vw,420px)] min-h-[280px] items-stretch sm:h-[460px] lg:order-1 lg:h-full lg:min-h-0">
             <motion.div
