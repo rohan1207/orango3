@@ -17,8 +17,8 @@ const steps = [
   {
     id: "squeeze",
     title: "Watch oranges freshly squeezed in front of you",
-    iconBefore: "/steps/squeeze-before.png",
-    iconAfter: "/steps/squeeze-after.png",
+    iconBefore: "/steps/squeeze-before-v2.png",
+    iconAfter: "/steps/squeeze-after-v2.png",
   },
   {
     id: "enjoy",

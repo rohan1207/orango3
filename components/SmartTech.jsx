@@ -63,8 +63,8 @@ const bentoTiles = [
     className: "col-span-1 row-span-1",
   },
   {
-    src: "/bento/cup-product-v2.jpg",
-    alt: "OranGo cup of fresh orange juice with a whole orange",
+    src: "/bento/cup-product-v3.jpg",
+    alt: "Fresh orange juice pouring into an OranGo cup",
     className: "col-span-1 row-span-1",
   },
 ];

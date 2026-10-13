@@ -333,13 +333,13 @@ export default function HealthBenefits() {
 
           {/* Pour / cup — exact geometric center of the ring */}
           <div className="pointer-events-none absolute inset-0 z-[2] flex items-center justify-center">
-            <div className="relative aspect-square w-[46%] max-w-[300px]">
+            <div className="relative aspect-square w-[58%] max-w-[360px]">
               <Image
                 src="/benefits/orango-pour.png"
                 alt="Fresh orange juice pouring into an OranGo cup"
                 fill
                 className="object-contain drop-shadow-[0_20px_40px_rgba(120,40,0,0.25)] [mix-blend-mode:screen]"
-                sizes="300px"
+                sizes="360px"
                 priority
               />
             </div>
@@ -359,14 +359,14 @@ export default function HealthBenefits() {
 
         {/* Mobile */}
         <div className="mt-5 md:hidden">
-          <div className="relative mx-auto w-[72%] max-w-[300px]">
+          <div className="relative mx-auto w-[80%] max-w-[340px]">
             <Image
               src="/benefits/orango-pour.png"
               alt="Fresh orange juice pouring into an OranGo cup"
               width={600}
               height={900}
               className="h-auto w-full object-contain [mix-blend-mode:screen]"
-              sizes="300px"
+              sizes="340px"
             />
           </div>
 

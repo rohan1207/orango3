@@ -162,7 +162,7 @@ export const HOME2_STEPS = [
       "No sugar or preservatives",
       "Built for high-footfall venues",
     ],
-    image: "/home2/machine.png",
+    image: "/machine-product.png",
     imageAlt: "OranGo vending machine — complete unit",
     imageFit: "contain",
     accent: "Pure. Fresh. Yours.",

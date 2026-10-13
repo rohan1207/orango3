@@ -16,8 +16,8 @@ export default function HomePageRest() {
       <ProcessSteps />
       {/* <BrandRibbon /> */}
       {/* <ExperienceSection /> */}
-      <HealthBenefits />
       <SmartTech />
+      <HealthBenefits />
       {/* <TrustStrip /> */}
       <CtaSection />
       {/* <HomeFaq /> */}
