@@ -10,22 +10,22 @@ const spaces = [
   {
     title: "Hospitals",
     copy: "A clean choice for visitors and staff.",
-    image: "/hospital.png",
+    image: "/hospital-v2.jpg",
   },
   {
     title: "Offices",
     copy: "The 4pm ritual, upgraded.",
-    image: "/office.png",
+    image: "/office-v2.jpg",
   },
   {
     title: "Malls",
     copy: "Footfall converted into fresh pours.",
-    image: "/mall.png",
+    image: "/mall-v2.jpg",
   },
   {
     title: "Gyms",
     copy: "Post-workout hydration, chilled.",
-    image: "/gym.png",
+    image: "/gym-v2.jpg",
   },
 ];
 
