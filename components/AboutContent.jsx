@@ -228,7 +228,7 @@ export default function AboutContent() {
             initial={reduce ? false : { opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="relative col-span-2 min-h-[200px] overflow-hidden rounded-[1.25rem] bg-[#EE6F28] sm:min-h-[240px] sm:rounded-[1.5rem] md:row-span-2 md:min-h-0 md:rounded-[1.75rem]"
+            className="relative col-span-2 min-h-[200px] overflow-hidden rounded-[1.25rem] border border-[#EE6F28]/12 bg-[#FFFAF6] sm:min-h-[240px] sm:rounded-[1.5rem] md:row-span-2 md:min-h-0 md:rounded-[1.75rem]"
           >
             <Image
               src="/machine-product.png"
@@ -237,11 +237,11 @@ export default function AboutContent() {
               className="object-contain object-bottom p-3 sm:p-4 md:p-6"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#8B3410]/55 to-transparent px-4 pb-4 pt-12 sm:px-5 sm:pb-5 sm:pt-16">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#FFE0B8] sm:text-[13px]">
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#FFFAF6] via-[#FFFAF6]/85 to-transparent px-4 pb-4 pt-12 sm:px-5 sm:pb-5 sm:pt-16">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#EE6F28] sm:text-[13px]">
                 OranGo machine
               </p>
-              <p className="mt-0.5 text-[1rem] font-semibold text-white sm:mt-1 sm:text-[1.05rem] md:text-[1.15rem]">
+              <p className="mt-0.5 text-[1rem] font-semibold text-[#8B3410] sm:mt-1 sm:text-[1.05rem] md:text-[1.15rem]">
                 Fresh juice, on the spot
               </p>
             </div>

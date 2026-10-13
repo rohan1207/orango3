@@ -109,24 +109,24 @@ export default function PartnersContent() {
       </section>
 
       <section className="relative z-10 mx-auto max-w-[1440px] px-4 pb-16 sm:px-5 md:px-8">
-        <div className="rounded-[2rem] bg-[#8B3410] px-6 py-10 text-center text-white sm:px-10 md:py-14">
+        <div className="rounded-[2rem] bg-[#EE6F28] px-6 py-10 text-center text-white sm:px-10 md:py-14">
           <h2 className="text-[clamp(1.5rem,4vw,2.4rem)] font-semibold tracking-[-0.03em]">
             Ready to talk commercial terms?
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-[15px] text-white/75">
+          <p className="mx-auto mt-3 max-w-xl text-[15px] text-white/90">
             If unit economics are confidential, we still describe the model
             clearly: you host; we operate; visitors get a healthier option.
           </p>
           <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
               href={primaryCta.href}
-              className="inline-flex rounded-full bg-[#EE6F28] px-7 py-3.5 text-[14px] font-semibold text-white hover:bg-[#D45A18]"
+              className="inline-flex rounded-full bg-white px-7 py-3.5 text-[14px] font-semibold text-[#EE6F28] transition-colors hover:bg-[#FFF5ED]"
             >
               Qualified partner form
             </Link>
             <a
               href={`mailto:${brand.partnershipsEmail}`}
-              className="inline-flex rounded-full border border-white/30 px-7 py-3.5 text-[14px] font-semibold text-white hover:bg-white/10"
+              className="inline-flex rounded-full border border-white/70 px-7 py-3.5 text-[14px] font-semibold text-white transition-colors hover:bg-white/15"
             >
               {brand.partnershipsEmail}
             </a>
